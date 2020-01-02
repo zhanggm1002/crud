@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.pagehelper.PageInfo;
 import com.zhangguoming.maven.web.entity.Area;
+import com.zhangguoming.maven.web.entity.Hobby;
 import com.zhangguoming.maven.web.entity.Student;
 
 public interface StudentService {
@@ -33,5 +34,24 @@ public interface StudentService {
 	 * @return
 	 */
 	public List<Area> getAreaListByPid(Integer pid);
+	
+	/**
+	 * 查询所有兴趣爱好
+	 * @return
+	 */
+	public List<Hobby> getHobbyListAll();
+	
+	/**
+	 * 根据学生Id，查询兴趣爱好Ids
+	 * @param stuId
+	 * @return
+	 */
+	public List<Integer> getHobbyIdListByStuId(Integer stuId);
+	/**
+	 * 根据Ids，删除学生
+	 * @param ids
+	 * @return
+	 */
+	public int delByIds(String ids);
 
 }

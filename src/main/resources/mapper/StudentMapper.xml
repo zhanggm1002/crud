@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhangguoming.maven.web.dao.StudentDao">
 	<select id="select" resultType="student">
-		SELECT id,name,header_img,provice_id,city_id,area_id,create_time 
-		FROM t_student
+		SELECT s.*,a1.`name` provice_name,a2.`name` city_name,a3.`name` area_name
+		FROM t_student s LEFT JOIN t_area a1 ON s.provice_id=a1.id 
+		LEFT JOIN t_area a2 ON s.city_id=a2.id
+		LEFT JOIN t_area a3 ON s.area_id=a3.id
 		<where>
 			<if test="name!=null">
-				name like '%${name}%'
+				s.name like '%${name}%'
 			</if>
 		</where>
 	</select>
@@ -18,11 +20,11 @@
 	
 	<update id="update">
 		update t_student set
-		name=#{name},header_img=#{header_img},provice_id=#{provice_id},city_id=#{city_id},area_id=#{area_id},create_time=#{create_time}
+		name=#{name},header_img=#{header_img},provice_id=#{provice_id},city_id=#{city_id},area_id=#{area_id}
 		where id=#{id}
 	</update>
 	
-	<insert id="insert">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO t_student (name,header_img,provice_id,city_id,area_id,create_time )
 		VALUES(#{name},#{header_img},#{provice_id},#{city_id},#{area_id},#{create_time})
 	</insert>
@@ -35,4 +37,25 @@
 		SELECT *
 		FROM t_area where pid=#{pid}
 	</select>
+	
+	<select id="selectHobbyAll" resultType="hobby">
+		SELECT *
+		FROM t_hobby
+	</select>
+	
+	<delete id="deleteStudentHobbyRelation">
+		delete from t_sudent_hobby_relation where student_id=#{stuId}
+	</delete>
+	
+	<insert id="insertStudentHobbyRelation">
+		insert into t_sudent_hobby_relation (student_id,hobby_id) values
+		<foreach collection="hobbyIds" separator="," item="hobbyId">
+			(${stuId},${hobbyId})
+		</foreach>
+	</insert>
+	
+	<select id="selectHobbyIdListByStuId" resultType="int">
+		select hobby_id from t_sudent_hobby_relation where student_id=#{stuId}
+	</select>
+	
 </mapper>

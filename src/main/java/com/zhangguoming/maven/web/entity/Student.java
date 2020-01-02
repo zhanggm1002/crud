@@ -1,6 +1,7 @@
 package com.zhangguoming.maven.web.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
 	
@@ -12,6 +13,36 @@ public class Student {
 	private Integer area_id;
 	private Date create_time;
 	
+	//兴趣爱好Ids
+	private List<Integer> hobbyIds;
+	private String provice_name;
+	private String city_name;
+	private String area_name;
+	
+	public String getProvice_name() {
+		return provice_name;
+	}
+	public void setProvice_name(String provice_name) {
+		this.provice_name = provice_name;
+	}
+	public String getCity_name() {
+		return city_name;
+	}
+	public void setCity_name(String city_name) {
+		this.city_name = city_name;
+	}
+	public String getArea_name() {
+		return area_name;
+	}
+	public void setArea_name(String area_name) {
+		this.area_name = area_name;
+	}
+	public List<Integer> getHobbyIds() {
+		return hobbyIds;
+	}
+	public void setHobbyIds(List<Integer> hobbyIds) {
+		this.hobbyIds = hobbyIds;
+	}
 	public Integer getId() {
 		return id;
 	}
