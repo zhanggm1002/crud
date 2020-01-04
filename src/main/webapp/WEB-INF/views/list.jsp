@@ -19,7 +19,7 @@
 							placeholder="请输入姓名">
 					</div>
 					<input type="hidden" id="pageNum" name="pageNum" value="${pageInfo.pageNum }">
-					<input type="hidden" id="orderBy" name="orderBy" value="${student.orderBy || 'asc'}">
+					<input type="hidden" id="orderBy" name="orderBy" value="${student.orderBy}">
 					<button type="button" class="btn btn-primary mb-2" onclick="query();">查询</button>
 				</form>
 				 <!-- 列表 -->
