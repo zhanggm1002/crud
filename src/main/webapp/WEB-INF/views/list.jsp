@@ -12,14 +12,17 @@
 	<div class="container-fluid">
 		<div class="row" style="margin-top: 36px;">
 			<div class="col-10 offset-1">
+			    <!-- 查询 -->
 				<form class="form-inline" id="queryForm">
 					<div class="form-group mx-sm-3 mb-2">
 						<input type="text" class="form-control" id="name" name="name" value="${student.name }"
 							placeholder="请输入姓名">
 					</div>
 					<input type="hidden" id="pageNum" name="pageNum" value="${pageInfo.pageNum }">
+					<input type="hidden" id="orderBy" name="orderBy" value="${student.orderBy }">
 					<button type="button" class="btn btn-primary mb-2" onclick="query();">查询</button>
 				</form>
+				 <!-- 列表 -->
 				<table class="table">
 					<thead>
 						<tr>
@@ -29,7 +32,7 @@
 							<th scope="col">省</th>
 							<th scope="col">市</th>
 							<th scope="col">区</th>
-							<th scope="col">时间</th>
+							<th scope="col" onclick="order();">时间</th>
 							<th scope="col">操作</th>
 						</tr>
 					</thead>
@@ -48,6 +51,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				 <!-- 全局按钮、分页 -->
 				<div class="row">
 					<div class="col-3">
 						<button type="button" class="btn btn-primary mb-2" onclick="add();">添加</button>
@@ -106,13 +110,23 @@
 		function delByIds(){
 			var ids = getCheckboxIds();
 			console.log(ids);
-			
 			$.post("delByIds",{ids:ids},function(res){
 				if(res){
 					$("#pageNum").val(1);
 					query();
 				}
 			})
+		}
+		
+		function order(){
+			var orderBy = $("#orderBy").val();
+			if("asc"==orderBy){
+				$("#orderBy").val("desc")
+			}else if("desc"==orderBy){
+				$("#orderBy").val("asc")
+			}
+			console.log($("#orderBy").val());
+			query();
 		}
 	</script>
 </body>

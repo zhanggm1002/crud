@@ -37,6 +37,11 @@
 	</properties>
 	<!-- jar依赖 -->
 	<dependencies>
+		<dependency>
+			  <groupId>com.zhanggm.common</groupId>
+			  <artifactId>zhanggm-common-utils</artifactId>
+			  <version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- 验证框架 -->
 		<dependency>
 			<groupId>javax.validation</groupId>

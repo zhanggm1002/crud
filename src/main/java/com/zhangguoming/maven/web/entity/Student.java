@@ -13,12 +13,23 @@ public class Student {
 	private Integer area_id;
 	private Date create_time;
 	
+	private String orderBy = "desc";
+	
 	//兴趣爱好Ids
 	private List<Integer> hobbyIds;
+	// str = type in ('type1','type2')
 	private String provice_name;
 	private String city_name;
 	private String area_name;
 	
+	
+	
+	public String getOrderBy() {
+		return orderBy;
+	}
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
 	public String getProvice_name() {
 		return provice_name;
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.zhanggm.common.utils.StringUtil;
 import com.zhangguoming.maven.web.entity.Area;
 import com.zhangguoming.maven.web.entity.Hobby;
 import com.zhangguoming.maven.web.entity.Student;
@@ -54,7 +55,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping("save")
-	public @ResponseBody Object save(Student student,@RequestParam(value="file",defaultValue="null") MultipartFile file) {
+	public @ResponseBody Object save(Student student,@RequestParam(value="file") MultipartFile file) {
 		//保存文件
 		if(file.getSize()!=0) {
 			String saveFile = saveFile(file);
@@ -93,5 +94,10 @@ public class StudentController {
 	@RequestMapping("delByIds")
 	public @ResponseBody Object delByIds(String ids) {
 		return studentService.delByIds(ids)>0;
+	}
+	
+	public static void main(String[] args) {
+		String randomChar = StringUtil.randomChineseName();
+		System.out.println(randomChar);
 	}
 }

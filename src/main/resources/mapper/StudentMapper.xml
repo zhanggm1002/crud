@@ -11,6 +11,7 @@
 				s.name like '%${name}%'
 			</if>
 		</where>
+		order by create_time ${orderBy}
 	</select>
 	<select id="selectById" resultType="student">
 		SELECT id,name,header_img,provice_id,city_id,area_id,create_time 
