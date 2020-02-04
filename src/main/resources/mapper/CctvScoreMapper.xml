@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangguoming.maven.web.dao.CctvScoreDao">
+	<select id="select" resultType="CctvScore">
+		SELECT * FROM cctv_score
+	</select>
+
+	<select id="selectById" resultType="CctvScore">
+		SELECT * FROM cctv_score WHERE id=#{id}
+	</select>
+
+	<update id="update">
+		UPDATE cctv_score
+		 SET aid=#{aid},jid=#{jid},score=#{score} 
+		WHERE id=#{id}
+
+	</update>
+
+	<insert id="insert">
+		INSERT INTO cctv_score(aid,jid,score)VALUES 
+			(#{aid},#{jid},#{score})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM cctv_score WHERE id in(${ids})
+	</delete>
+
+</mapper>

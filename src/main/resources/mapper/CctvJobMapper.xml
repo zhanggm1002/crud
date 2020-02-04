@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhangguoming.maven.web.dao.CctvJobDao">
+	<select id="select" resultType="CctvJob">
+		SELECT * FROM cctv_job
+	</select>
+
+	<select id="selectById" resultType="CctvJob">
+		SELECT * FROM cctv_job WHERE id=#{id}
+	</select>
+
+	<update id="update">
+		UPDATE cctv_job
+		 SET name=#{name},require_edu=#{require_edu},require_degree=#{require_degree},intro=#{intro} 
+		WHERE id=#{id}
+
+	</update>
+
+	<insert id="insert">
+		INSERT INTO cctv_job(name,require_edu,require_degree,intro)VALUES 
+		(#{name},#{require_edu},#{require_degree},#{intro})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM cctv_job WHERE id in(${ids})
+	</delete>
+
+</mapper>
